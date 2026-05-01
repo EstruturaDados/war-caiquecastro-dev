@@ -21,6 +21,7 @@
 
 // --- Constantes Globais ---
 // Definem valores fixos para o número de territórios, missões e tamanho máximo de strings, facilitando a manutenção.
+
 #define MAX_TERRITORIOS 5
 #define MAX_MISSOES 10
 #define MAX_STRING 50
@@ -118,6 +119,7 @@ int main() {
 
     return 0;
 }
+
 // --- Implementação das Funções ---
 
 // alocarMapa():
@@ -152,6 +154,7 @@ void inicializarTerritorios(Territorio *mapa) {
     strcpy(mapa[4].corExercito, "Laranja");
     mapa[4].numTropas = 5;
 }
+
 // liberarMemoria():
 // Libera a memória previamente alocada para o mapa usando free.
     void liberarMemoria(Territorio *mapa) {
@@ -175,6 +178,7 @@ void exibirMapa(const Territorio *mapa) {
         printf("%-15s %-10s %-10d\n", mapa[i].nome, mapa[i].corExercito, mapa[i].numTropas);
     }
 }
+
 // exibirMissao():
 // Exibe a descrição da missão atual do jogador com base no ID da missão sorteada.
 void exibirMissao(int missaoID) {
@@ -209,6 +213,7 @@ void faseDeAtaque(Territorio *mapa) {
         printf("Territórios inválidos. Tente novamente.\n");
     }
 }
+
 // simularAtaque():
 // Executa a lógica de uma batalha entre dois territórios.
 // Realiza validações, rola os dados, compara os resultados e atualiza o número de tropas.
