@@ -47,7 +47,7 @@ void limparBufferEntrada();
 
 int main() {
     Territorio *mapaPtr = NULL;
-    int escolha;
+    int escolha = -1;
 
     // Configura locale para português
     setlocale(LC_ALL, "Portuguese");
@@ -77,6 +77,7 @@ int main() {
         if (scanf("%d", &escolha) != 1) {
             printf("Entrada invalida. Tente novamente.\n");
             limparBufferEntrada();
+            escolha = -1;
             continue;
         }
         limparBufferEntrada();
@@ -197,9 +198,17 @@ void exibirMissao(int missaoID) {
 void faseDeAtaque(Territorio *mapa) {
     int origem, destino;
     printf("Digite o número do território de origem (0-%d): ", MAX_TERRITORIOS - 1);
-    scanf("%d", &origem);
+    if (scanf("%d", &origem) != 1) {
+        printf("Entrada invalida. Tente novamente.\n");
+        limparBufferEntrada();
+        return;
+    }
     printf("Digite o número do território de destino (0-%d): ", MAX_TERRITORIOS - 1);
-    scanf("%d", &destino);
+    if (scanf("%d", &destino) != 1) {
+        printf("Entrada invalida. Tente novamente.\n");
+        limparBufferEntrada();
+        return;
+    }
     limparBufferEntrada(); // Limpa o buffer para evitar problemas com leituras subsequentes.
     if (origem >= 0 && origem < MAX_TERRITORIOS && destino >= 0 && destino < MAX_TERRITORIOS) {
         simularAtaque(&mapa[origem], &mapa[destino]); // Chama a função para simular o ataque entre os territórios selecionados.
